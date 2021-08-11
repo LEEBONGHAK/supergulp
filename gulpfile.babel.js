@@ -1,6 +1,7 @@
 import gulp from "gulp";
 import gpug from "gulp-pug";         // pug 파일을 html로 변환 시키는 데 사용하는 라이브러리
 import del from "del";               // 이미 build된 내용을 삭제하기 위한 라이브러리
+import ws from "gulp-webserver";     // 개발 서버(localhost 서버 같은 것)를 만드는 데 사용하는 라이브러리
 
 const routes = {
     pug: {
@@ -17,8 +18,15 @@ const pug = () =>
 
 const clean = () => del(["build"]);
 
-const prepare = gulp.series([clean])
+const webserver = () => 
+    gulp
+        .src("build")
+        .pipe(ws({ livereload: true, open: true }));     // livereload : 파일을 저장하면 자동으로 새로고침해주는 것, open : brawsor에서 localhost 서버를 여는 것
 
-const assets = gulp.series([pug])
+const prepare = gulp.series([clean]);
 
-export const dev = gulp.series([prepare, assets]);      // export는 pakage.json에서 쓸 command만 해주면 됨
+const assets = gulp.series([pug]);
+
+const postDev = gulp.series([webserver]);
+
+export const dev = gulp.series([prepare, assets, postDev]);      // export는 pakage.json에서 쓸 command만 해주면 됨

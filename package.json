@@ -14,9 +14,8 @@
     "@babel/preset-env": "^7.15.0",
     "@babel/register": "^7.15.3",
     "gulp": "^4.0.2",
-    "gulp-pug": "^5.0.0"
-  },
-  "dependencies": {
-    "del": "^6.0.0"
+    "gulp-pug": "^5.0.0",
+    "del": "^6.0.0",
+    "gulp-webserver": "^0.9.1"
   }
 }
