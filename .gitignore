@@ -177,3 +177,8 @@ API
 Training
 Blog
 About
+
+# next.js build output
+.next
+
+build/
