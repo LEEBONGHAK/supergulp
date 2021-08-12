@@ -4,6 +4,8 @@ import del from "del";               // 이미 build된 내용을 삭제하기 �
 import ws from "gulp-webserver";     // 개발 서버(localhost 서버 같은 것)를 만드는 데 사용하는 라이브러리 (have to install gulp-webserver)
 import gimage from "gulp-image";     // 이미지를 다루기 위한 라이브러리 (have to install gulp-image)
 
+const sass = require("gulp-sass")(require("node-sass"));      // sass 를 사용하기 위한 라이브러리 (have to install node-sass and gulp-sass)
+
 const routes = {
     pug: {
         watch: "src/**/*.pug",       // src 내 모든 파일의 변동사항을 확인하기 위해
@@ -13,6 +15,11 @@ const routes = {
     img: {
         src: "src/img/*",
         dest: "build/img"
+    },
+    scss: {
+        watch: "src/scss/**/*.scss",
+        src: "src/scss/style.scss",
+        dest: "build/css"
     }
 };
 
@@ -29,21 +36,27 @@ const webserver = () =>
         .src("build")
         .pipe(ws({ livereload: true, open: true }));     // livereload : 파일을 저장하면 자동으로 새로고침해주는 것, open : brawsor에서 localhost 서버를 여는 것
 
-
 const img = () => 
     gulp
         .src(routes.img.src)
         .pipe(gimage())
         .pipe(gulp.dest(routes.img.dest));
 
+const styles = () =>
+    gulp
+        .src(routes.scss.src)
+        .pipe(sass().on("error", sass.logError))        // sass만의 에러를 보기 위해
+        .pipe(gulp.dest(routes.scss.dest));
+
 const watch = () => {
     gulp.watch(routes.pug.watch, pug);
-    gulp.watch(routes.img.src, img);    
+    gulp.watch(routes.img.src, img);
+    gulp.watch(routes.scss.watch, styles);
 };
 
 const prepare = gulp.series([clean, img]);
 
-const assets = gulp.series([pug]);
+const assets = gulp.series([pug, styles]);
 
 const live = gulp.series([webserver, watch]);
 
