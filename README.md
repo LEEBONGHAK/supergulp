@@ -1,14 +1,38 @@
 # supergulp
 
-Learn Gulp by building an awesome development environment  
-참고 url : https://nomadcoders.co/gulp-for-beginners
-
-
-
+Learn Gulp by building an awesome development environment<br>
+참고 url : https://nomadcoders.co/gulp-for-beginners<br><br>
 
  - ES6, SCSS, Minify, Uglify, Browserify, Pug를 컴파일하는 개발자 워크플로우
  - Github Pages 에 자동으로 디플로이하는 워크플로우
- - 이를 통해 해당 보일러플레이트를 다른 프로젝트에도 사용 가능
+ - 이를 통해 해당 보일러플레이트를 다른 프로젝트에도 사용 가능<br>
+
+Things to prepare for this project<br>
+1. major things
+- Node.js : https://nodejs.dev/learn/how-to-install-nodejs
+- npm : https://www.npmjs.com/package/install
+- yarn : https://classic.yarnpkg.com/en/docs/install/#windows-stable
+- gulp.js : https://gulpjs.com/docs/en/getting-started/quick-start<br>
+
+2. babel modules
+- @babel/register
+- @babel/core
+- @babel/preset-env<br>
+
+3. gulp plug-in
+- gulp-pug : https://www.npmjs.com/package/gulp-pug
+- gulp-image : https://www.npmjs.com/package/gulp-image
+- gulp-webserver : https://github.com/schickling/gulp-webserver
+- gulp-autoprefixer : https://www.npmjs.com/package/gulp-autoprefixer?activeTab=readme
+- gulp-csso : https://www.npmjs.com/package/gulp-csso
+- gulp-bro : https://www.npmjs.com/package/gulp-bro
+- gulp-gh-pages : https://www.npmjs.com/package/gulp-gh-pages<br>
+
+4. npm packages
+- del : https://www.npmjs.com/package/del
+- uglifyify : https://www.npmjs.com/package/uglifyify
+- babelify : https://www.npmjs.com/package/babelify<br>
+
 ---
 ## #0 INTRODUCTION
 
