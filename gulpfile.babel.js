@@ -1,8 +1,10 @@
 import gulp from "gulp";
-import gpug from "gulp-pug";         // pug 파일을 html로 변환 시키는 데 사용하는 라이브러리 (have to install gulp-gup)
-import del from "del";               // 이미 build된 내용을 삭제하기 위한 라이브러리 (have to install del)
-import ws from "gulp-webserver";     // 개발 서버(localhost 서버 같은 것)를 만드는 데 사용하는 라이브러리 (have to install gulp-webserver)
-import gimage from "gulp-image";     // 이미지를 다루기 위한 라이브러리 (have to install gulp-image)
+import gpug from "gulp-pug";                // pug 파일을 html로 변환 시키는 데 사용하는 라이브러리 (have to install gulp-gup)
+import del from "del";                      // 이미 build된 내용을 삭제하기 위한 라이브러리 (have to install del)
+import ws from "gulp-webserver";            // 개발 서버(localhost 서버 같은 것)를 만드는 데 사용하는 라이브러리 (have to install gulp-webserver)
+import gimage from "gulp-image";            // 이미지를 다루기 위한 라이브러리 (have to install gulp-image)
+import autoprefixer from "gulp-autoprefixer";      // 작업한 코드를 알아듣지 못하는 구형 브라우저도 호환 가능하도록 만들어줌 (have to install gulp-autoprefixer)
+import miniCSS from "gulp-csso";            // css 파일을 최소화 해주는 라이브러리 (have to install gulp-csso)
 
 const sass = require("gulp-sass")(require("node-sass"));      // sass 를 사용하기 위한 라이브러리 (have to install node-sass and gulp-sass)
 
@@ -46,6 +48,8 @@ const styles = () =>
     gulp
         .src(routes.scss.src)
         .pipe(sass().on("error", sass.logError))        // sass만의 에러를 보기 위해
+        .pipe(autoprefixer())
+        .pipe(miniCSS())
         .pipe(gulp.dest(routes.scss.dest));
 
 const watch = () => {
